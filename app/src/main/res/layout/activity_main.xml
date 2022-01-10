@@ -45,6 +45,7 @@
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/tv_signup">
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name_text_message"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -54,14 +55,18 @@
             app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:inputType="textImeMultiLine"
-                android:textCursorDrawable="@drawable/cursors"
-                android:maxLines="1"
-                android:id="@+id/et_message"
+                android:id="@+id/et_gmail.com"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username" />
+                android:hint="Gmail"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textCursorDrawable="@drawable/cursors" />
         </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name_text_input"
@@ -72,32 +77,40 @@
             app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:inputType="textImeMultiLine"
-                android:textCursorDrawable="@drawable/cursors"
-                android:maxLines="1"
-                android:id="@+id/et_username"
+                android:id="@+id/et_themes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Message" />
+                android:hint="Theme"
+                android:inputType="textEmailSubject"
+                android:maxLines="1"
+                android:textCursorDrawable="@drawable/cursors" />
         </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name_text_input_two"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxStrokeColor="@color/black"
-            app:endIconMode="password_toggle"
+            app:endIconMode="clear_text"
             app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:textCursorDrawable="@drawable/cursors"
-                android:id="@+id/et_password"
+                android:id="@+id/et_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textColorHint="@color/black" />
+                android:hint="Message"
+                android:inputType="textMultiLine"
+                android:textColorHint="@color/black"
+                android:textCursorDrawable="@drawable/cursors" />
         </com.google.android.material.textfield.TextInputLayout>
+
+
     </LinearLayout>
 
     <TextView
@@ -111,6 +124,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_registr" />
+
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_black_GO"
@@ -126,6 +141,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_forget_password"
         tools:layout_editor_absoluteX="16dp" />
 
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,7 +153,6 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/btn_black_GO"
-
         />
 
 
