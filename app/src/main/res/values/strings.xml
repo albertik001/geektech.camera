@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">geektech.01urok</string>
+    <string name="AlertTitle" />
 </resources>
