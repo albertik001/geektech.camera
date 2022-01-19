@@ -9,8 +9,13 @@ import android.text.TextWatcher;
 import com.bumptech.glide.Glide;
 import com.example.geektech01urok.databinding.ActivityMainBinding;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
+    public final static String USERNAME =  "username_key";
+    public final static String PASSWORD =  "password_key";
+    public final static String PHONENUMBER =  "phone_number";
     private ActivityMainBinding binding;
     private Boolean isNotEmptyPassword = true;
     private Boolean isNotEmptyUsername = false;
@@ -37,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         Glide.with(this).load("https://seeklogo.com/images/A/AMG-logo-E67BBF3237-seeklogo.com.png").into(binding.imageCars);
     }
 
+    @Override
+    protected void onStart() {
+        Prefs prefs =  new Prefs(MainActivity.this);
+        if (prefs.isMainCreate()){
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
+        }
+        super.onStart();
+
+    }
 //    private void activityGalleryCamera() {
 //        binding.btnBlackGO.setOnClickListener(v -> {
 //            mGetContent.launch("image/*");
@@ -69,11 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (editable.toString().length() < 6) {
-                    isNotEmptyPassword = false;
-                } else {
-                    isNotEmptyPassword = true;
-                }
+                isNotEmptyPassword = editable.toString().length() >= 6;
             }
         });
         binding.etUsername.addTextChangedListener(new TextWatcher() {
@@ -89,11 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!editable.toString().isEmpty()) {
-                    isNotEmptyUsername = true;
-                } else {
-                    isNotEmptyUsername = false;
-                }
+                isNotEmptyUsername = !editable.toString().isEmpty();
             }
         });
         binding.etPhoneNumber.addTextChangedListener(new TextWatcher() {
@@ -109,19 +116,21 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!editable.toString().isEmpty()) {
-                    isNotEmptyPhoneNumber = true;
-                } else {
-                    isNotEmptyPhoneNumber = false;
-                }
+                isNotEmptyPhoneNumber = !editable.toString().isEmpty();
             }
         });
+
         binding.btnBlackGO.setOnClickListener(view -> {
             if (isNotEmptyPassword) {
                 if (isNotEmptyUsername) {
                     if (isNotEmptyPhoneNumber) {
                         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra(PASSWORD, Objects.requireNonNull(binding.etPassword.getText()).toString());
+                        intent.putExtra(PHONENUMBER, Objects.requireNonNull(binding.etPhoneNumber.getText()).toString());
+                        Prefs prefs =  new Prefs(MainActivity.this);
+                        prefs.setUserName(binding.etUsername.getText().toString());
                         startActivity(intent);
+
                     } else {
                         binding.etPhoneNumber.setError("");
                     }
